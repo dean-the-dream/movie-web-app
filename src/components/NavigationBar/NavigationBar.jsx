@@ -6,6 +6,10 @@ const NavigationBar = () => {
     
     <NavDiv>
       <div>React Movie App</div>
+      <div>
+        <button>Login</button>
+        <button>Register</button>
+      </div>
     </NavDiv>
     
     

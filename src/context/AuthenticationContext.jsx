@@ -2,6 +2,7 @@ import { createContext,  useState } from "react"
 
 export const AuthenticationContext = createContext();
 
+
 const AuthenticationContextProvider = (props) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 

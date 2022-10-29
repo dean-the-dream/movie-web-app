@@ -1,0 +1,40 @@
+.movieLinkContainer{
+display: flex;
+flex-direction: column;
+max-width: fit-content;
+position: relative;
+overflow: hidden;
+
+img{
+    height: 525px;
+    margin: 0;
+}
+
+div{
+height: 75px;
+width: 100%;
+background-color: skyblue;
+margin: 0;
+padding: 0;
+}
+
+&::after{
+    position:absolute;
+    background-color: rgba(0,0,0,.4);
+    max-width: inherit;
+    height: 600px;
+    content: attr(dataInfo);
+    color: white;
+    display: flex;
+    align-items:center;
+    translate: 100%;
+    transition: .6s translate;
+
+}
+
+&:hover::after{
+    translate: 0 ;
+
+}
+
+}
