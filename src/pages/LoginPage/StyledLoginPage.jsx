@@ -36,7 +36,12 @@ button{
 `
 
 const WarningSection =styled.div`
-
+background-color: red;
+color: white;
+margin: 15px;
+padding: 10px;
+border-radius: 10px;
+font-weight: bold;
 `
 
 export {LoginPageContainer, PictureWrapper, FormWrapper, WarningSection}

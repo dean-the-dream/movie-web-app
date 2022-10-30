@@ -16,6 +16,13 @@ const NavDiv = styled.div`
         height: 2rem;
         margin: 10px 20px;
     }
+    .userName:hover{
+        cursor: default
+    }
+
+    .logo:hover, button{
+        cursor: pointer
+    }
 `
 
 export {NavDiv}

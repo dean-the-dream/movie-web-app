@@ -26,6 +26,7 @@ const searchHandler = (e) => {
   console.log(movieSearch)
   getData(movieSearch)
   setMovieSearch("")
+  console.log(context.currentUser)
 }
 
 // useEffect(() => {

@@ -14,24 +14,29 @@ const [loginPassword, setLoginPassword] = useState("");
 const [warning, setWarning] = useState(false);
 
 
+const warnUser = () => {
+  setWarning(true)
+  setTimeout(() => setWarning(false), 3000)
+
+}
+
+
 const login = async (e) => {
   e.preventDefault();
   try {
     const user = await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
+    navigate("/")
   } catch (error) {
     if(String(error).includes("user-not-found") || String(error).includes("wrong-password")){
-      console.log("We couldn't find your account with the information provided.")
+      warnUser()
     }
+  } finally{
   }
-  
-  
-  
-  // navigate("/")
 }
 
-const warnUser = () => {
 
-}
+
+
 
 
 
@@ -58,7 +63,7 @@ const warnUser = () => {
           onClick={login}>Login</button>
           <button>Continue with Google</button>
         </form>
-        <WarningSection>We couldn't find your account with the information provided.</WarningSection>
+        {warning&&<WarningSection>We couldn't find your account with the information provided.</WarningSection>}
       </FormWrapper>
     </LoginPageContainer>
   )

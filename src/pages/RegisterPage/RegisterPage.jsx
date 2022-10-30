@@ -1,6 +1,6 @@
 import { LoginPageContainer,PictureWrapper,FormWrapper } from "./StyledRegisterPage"
 import { useState, useContext} from "react"
-import {createUserWithEmailAndPassword} from 'firebase/auth'
+import {createUserWithEmailAndPassword, updateProfile} from 'firebase/auth'
 import { auth } from "../../firebase-config"
 import { AuthenticationContext } from "../../context/AuthenticationContext"
 import { useNavigate } from "react-router-dom"
@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom"
 const RegisterPage = () => {
 const [registerEmail, setRegisterEmail] = useState("");
 const [registerPassword, setRegisterPassword] = useState("");
+const [registerUsername, setRegisterUsername] = useState("");
 const context = useContext(AuthenticationContext);
 const navigate = useNavigate()
 
@@ -18,7 +19,11 @@ const navigate = useNavigate()
 const register = async (e) => {
   e.preventDefault();
   const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword)
-  context.updateCurrentUser(user)
+  updateProfile(auth.currentUser, {
+    displayName: registerUsername.trim(),
+    photoURL: null
+  }).then(() => {context.updateCurrentUser(auth.currentUser)})
+  
   setRegisterPassword("");
   setRegisterEmail("");
   navigate("/")
@@ -34,6 +39,11 @@ const register = async (e) => {
       <FormWrapper>
         <form action="">
           <h1>Register</h1>
+          <label htmlFor="username">Username</label>
+          <input type="text" name="username" placeholder="Create a username" 
+          value={registerUsername}
+          onChange={(e)=> setRegisterUsername(e.target.value)}
+          />
           <label htmlFor="email">Email</label>
           <input type="text" name="email" placeholder="Enter your email address..." 
           value={registerEmail}
@@ -48,7 +58,9 @@ const register = async (e) => {
           <button 
           onClick={register}     
           >Create Account</button>
-          <button>Continue with Google</button>
+          <button
+          onClick={()=> console.log(context.currentUser)}
+          >Continue with Google</button>
         </form>
       </FormWrapper>
     </LoginPageContainer>

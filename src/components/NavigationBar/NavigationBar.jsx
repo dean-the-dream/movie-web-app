@@ -15,8 +15,11 @@ const logout = async () => {
   return (
     
     <NavDiv>
-      <div>React Movie App</div>
-      {context.currentUser&&<div> Welcome, {context.currentUser.email}! Let Find something to watch. </div>}
+      <div 
+      onClick={() => navigate("/")}
+      className="logo"
+      >React Movie App</div>
+      {context.currentUser&&<div className='userName'> Welcome, {context.currentUser.displayName}! Let Find something to watch. </div>}
       <div>{!context.currentUser?
         <><button
         onClick={() => navigate("/login")}>Login</button>
