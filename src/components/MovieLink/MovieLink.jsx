@@ -2,7 +2,6 @@ import './style.scss'
 import { useNavigate, useLocation } from 'react-router-dom'
 
 const MovieLink = ({movieData}) => {
-console.log(movieData)
 const pic = `https://image.tmdb.org/t/p/w600_and_h900_bestv2/${movieData.backdrop_path}`
 const title = movieData.title
 const overview = movieData.overview
@@ -11,8 +10,7 @@ const location= useLocation();
 
   return (
     <div className="movieLinkContainer" 
-    dataInfo={overview}
-    // onClick={()=>navigate("/details", location({state:{movieData}}))}
+    datainfo={overview}
     onClick={()=>navigate("/details",{ state: {movieData}})}
     >
       <img src={pic} alt="" />

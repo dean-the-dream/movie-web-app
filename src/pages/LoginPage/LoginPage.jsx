@@ -1,6 +1,26 @@
 import { LoginPageContainer,PictureWrapper,FormWrapper } from "./StyledLoginPage"
+import {signInWithEmailAndPassword} from 'firebase/auth'
+import { auth } from "../../firebase-config"
+import { useNavigate } from "react-router-dom"
+import { AuthenticationContext } from "../../context/AuthenticationContext"
+import { useContext, useState } from "react"
+
 
 const LoginPage = () => {
+const context = useContext(AuthenticationContext);
+const navigate = useNavigate();
+const [loginEmail, setLoginEmail] = useState("");
+const [loginPassword, setLoginPassword] = useState("");
+
+const login = async (e) => {
+  e.preventDefault();
+  const user = await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
+  
+  navigate("/")
+}
+
+
+
   return (
     <LoginPageContainer>
       <PictureWrapper>
@@ -10,11 +30,18 @@ const LoginPage = () => {
         <form action="">
           <h1>Login</h1>
           <label htmlFor="email">Email</label>
-          <input type="text" name="email" placeholder="Enter your email address..." />
+          <input type="text" name="email" placeholder="Enter your email address..." 
+          value={loginEmail}
+          onChange={(e) => setLoginEmail(e.target.value)}
+          />
           <label htmlFor="password">Password</label>
-          <input type="password" name="password" placeholder="Enter your password" />
+          <input type="password" name="password" placeholder="Enter your password" 
+          value={loginPassword}
+          onChange={(e) => setLoginPassword(e.target.value)}
+          />
           <span>Forgot password?</span>
-          <button>Login</button>
+          <button
+          onClick={login}>Login</button>
           <button>Continue with Google</button>
         </form>
       </FormWrapper>

@@ -1,11 +1,5 @@
 import styled from "styled-components";
 
-const MovieContainer = styled.div`
-display: flex;
-flex-wrap: wrap;
-justify-content: left;
-gap: 10px
-`
 const SearchBar =styled.form`
 display: flex;
 background-color: lightgrey;
@@ -15,4 +9,20 @@ height: 1.5rem;
 padding: 5px;
 `
 
-export {MovieContainer, SearchBar}
+const PageContainer =styled.div`
+display: flex;
+width: 100%;
+dipslay: flex;
+justify-content: center;
+`
+const MovieContainer = styled.div`
+display: flex;
+flex-wrap: wrap;
+justify-content: left;
+gap: 20;
+width: 1600px;
+`
+
+
+
+export {MovieContainer, SearchBar, PageContainer}

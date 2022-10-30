@@ -1,17 +1,30 @@
 import { createContext,  useState } from "react"
+import {onAuthStateChanged} from 'firebase/auth'
+import { auth } from "../firebase-config";
 
 export const AuthenticationContext = createContext();
 
 
 const AuthenticationContextProvider = (props) => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [currentUser, setCurrentUser] = useState({});
+    onAuthStateChanged(auth,(user)=>{
+        setCurrentUser(user)
+        console.log(currentUser)
+    })
 
-    const logInOrOut = () => {
-        setIsLoggedIn(!isLoggedIn)
+ 
+
+    const updateCurrentUser = (user) => {
+      // if(!isLoggedIn){
+      //   setUser({})
+      // } else {
+      //   setUser(user)
+      // }
+      setCurrentUser(user)
     }
 
   return (
-    <AuthenticationContext.Provider value={{isLoggedIn, logInOrOut}}>
+    <AuthenticationContext.Provider value={{updateCurrentUser, currentUser}}>
         {props.children}
     </AuthenticationContext.Provider>
   )
