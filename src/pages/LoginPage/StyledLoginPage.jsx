@@ -33,7 +33,10 @@ width: 70%;
 button{
     
 }
+`
+
+const WarningSection =styled.div`
 
 `
 
-export {LoginPageContainer, PictureWrapper, FormWrapper}
+export {LoginPageContainer, PictureWrapper, FormWrapper, WarningSection}

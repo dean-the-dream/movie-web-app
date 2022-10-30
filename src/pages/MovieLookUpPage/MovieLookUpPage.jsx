@@ -8,11 +8,24 @@ const API_KEY = process.env.REACT_APP_KEY;
 const MovieLookUpPage = () => {
 const [movieData, setMovieData] = useState([{backdrop_path: "/tIX6j3NzadlwGcJ52nuWdmtOQkg.jpg", title: "terrifier 2", overview: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad ipsum voluptates impedit illum minus natus sed cum iusto, unde vitae?" },{backdrop_path: "/tIX6j3NzadlwGcJ52nuWdmtOQkg.jpg", title: "terrifier 2", overview: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad ipsum voluptates impedit illum minus natus sed cum iusto, unde vitae?" },{backdrop_path: "/tIX6j3NzadlwGcJ52nuWdmtOQkg.jpg", title: "terrifier 2", overview: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad ipsum voluptates impedit illum minus natus sed cum iusto, unde vitae?" },{backdrop_path: "/tIX6j3NzadlwGcJ52nuWdmtOQkg.jpg", title: "terrifier 2", overview: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad ipsum voluptates impedit illum minus natus sed cum iusto, unde vitae?" },{backdrop_path: "/tIX6j3NzadlwGcJ52nuWdmtOQkg.jpg", title: "terrifier 2", overview: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad ipsum voluptates impedit illum minus natus sed cum iusto, unde vitae?" }])
 const context = useContext(AuthenticationContext)
+const [movieSearch, setMovieSearch] = useState("");
 
- const getData = async () => {
+ const getData = async (keyword) => {
+  if(!keyword){
   await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}`)
   .then(res => res.json())
   .then(data =>  setMovieData(data.results))
+  } else {
+    await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${keyword}`)
+  .then(res => res.json())
+  .then(data =>  setMovieData(data.results))
+}}
+
+const searchHandler = (e) => {
+  e.preventDefault();
+  console.log(movieSearch)
+  getData(movieSearch)
+  setMovieSearch("")
 }
 
 // useEffect(() => {
@@ -23,8 +36,12 @@ const context = useContext(AuthenticationContext)
   return (
     <>
     <SearchBar>
-      <input type="text" />
-      <button>Search</button>
+      <input type="text" 
+      value={movieSearch}
+      onChange={(e) => setMovieSearch(e.target.value)}
+      />
+      <button
+      onClick={(e) => searchHandler(e)}>Search</button>
     </SearchBar>
     <PageContainer>
     <MovieContainer>

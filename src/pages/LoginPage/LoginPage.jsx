@@ -1,4 +1,4 @@
-import { LoginPageContainer,PictureWrapper,FormWrapper } from "./StyledLoginPage"
+import { LoginPageContainer,PictureWrapper,FormWrapper, WarningSection } from "./StyledLoginPage"
 import {signInWithEmailAndPassword} from 'firebase/auth'
 import { auth } from "../../firebase-config"
 import { useNavigate } from "react-router-dom"
@@ -11,12 +11,26 @@ const context = useContext(AuthenticationContext);
 const navigate = useNavigate();
 const [loginEmail, setLoginEmail] = useState("");
 const [loginPassword, setLoginPassword] = useState("");
+const [warning, setWarning] = useState(false);
+
 
 const login = async (e) => {
   e.preventDefault();
-  const user = await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
+  try {
+    const user = await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
+  } catch (error) {
+    if(String(error).includes("user-not-found") || String(error).includes("wrong-password")){
+      console.log("We couldn't find your account with the information provided.")
+    }
+  }
   
-  navigate("/")
+  
+  
+  // navigate("/")
+}
+
+const warnUser = () => {
+
 }
 
 
@@ -44,6 +58,7 @@ const login = async (e) => {
           onClick={login}>Login</button>
           <button>Continue with Google</button>
         </form>
+        <WarningSection>We couldn't find your account with the information provided.</WarningSection>
       </FormWrapper>
     </LoginPageContainer>
   )

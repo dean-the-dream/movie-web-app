@@ -7,6 +7,7 @@ justify-content: center;
 gap: 5px;
 height: 1.5rem;
 padding: 5px;
+
 `
 
 const PageContainer =styled.div`

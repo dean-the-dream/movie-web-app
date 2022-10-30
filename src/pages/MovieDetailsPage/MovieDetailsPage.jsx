@@ -7,10 +7,9 @@ const MovieDetailsPage = () => {
   const location = useLocation();
 
 
-  useEffect(()=> {
-    console.log(location.state.movieData)},[])
-    const movie =location.state.movieData
   
+    const movie =location.state.movieData
+    
   return (
     <DetailsContainer>
       <PicContainer>
@@ -22,9 +21,10 @@ const MovieDetailsPage = () => {
       </OverviewContainer>
       <InfoContainer>
         <h2>Info</h2>
-        <p>Release Date:</p>
-        <p>Rating</p>
-        <p>Total Views</p>
+        {/* <p>Release Date:{date}</p> */}
+        <p>Release Date: {movie.release_date}</p>
+        <p>Rating: {movie.vote_average}</p>
+        <p>Total Views: {Math.round(movie.popularity)} </p>
       </InfoContainer>
     </DetailsContainer>
   )
