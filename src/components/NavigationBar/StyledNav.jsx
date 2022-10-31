@@ -6,7 +6,7 @@ const NavDiv = styled.div`
     box-sizing: border-box;
     width: 100%;
     height: 4rem;
-    background-color: blue;
+    background-color: #023047;
     color: white;
     display: flex;
     justify-content: space-between;

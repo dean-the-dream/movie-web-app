@@ -29,9 +29,9 @@ const searchHandler = (e) => {
   console.log(context.currentUser)
 }
 
-// useEffect(() => {
-// getData()
-// }, [])
+useEffect(() => {
+getData()
+}, [])
 
 
   return (

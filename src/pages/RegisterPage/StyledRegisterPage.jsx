@@ -24,16 +24,20 @@ h1{
 }
 
 form{
-display: flex;
-flex-direction: column;
-gap: 10px;
-width: 70%;
-}
-
-button{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 70%;
+    font-size: 1.5rem;
+    }
     
-}
-
+    button, input{
+        font-size: 1rem;
+        height: 2.5rem;
+        b
+    
+    }
+    
 `
 
 export {LoginPageContainer, PictureWrapper, FormWrapper}

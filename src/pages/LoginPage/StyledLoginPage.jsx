@@ -28,10 +28,14 @@ display: flex;
 flex-direction: column;
 gap: 10px;
 width: 70%;
+font-size: 1.5rem;
 }
 
-button{
-    
+button, input{
+    font-size: 1rem;
+    height: 2.5rem;
+    b
+
 }
 `
 

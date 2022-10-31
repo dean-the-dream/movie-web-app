@@ -14,26 +14,33 @@ img{
 div{
 height: 75px;
 width: 100%;
-background-color: skyblue;
+background-color: #8ECAE6;
 margin: 0;
 padding: 0;
+font-size: 1.5rem;
+display: flex;
+align-items: center;
+justify-content: center;
 }
 
-&::after{
+&::before{
     position:absolute;
     background-color: rgba(0,0,0,.4);
     max-width: inherit;
-    height: 600px;
+    height: 525px;
     content: attr(datainfo);
     color: white;
     display: flex;
     align-items:center;
+    justify-content: center;
     translate: 100%;
     transition: .6s translate;
+    font-size:1.5rem;
+    padding: 0 10px;
 
 }
 
-&:hover::after{
+&:hover::before{
     translate: 0 ;
 
 }
