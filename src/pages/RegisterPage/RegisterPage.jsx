@@ -26,7 +26,7 @@ const register = async (e) => {
   
   setRegisterPassword("");
   setRegisterEmail("");
-  navigate("/")
+  setTimeout(() => navigate("/"), 300)
 }
 
 

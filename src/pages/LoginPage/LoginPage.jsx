@@ -29,7 +29,9 @@ const login = async (e) => {
   } catch (error) {
     if(String(error).includes("user-not-found") || String(error).includes("wrong-password")){
       warnUser()
+      console.log(error)
     } else {
+      console.log(error)
       console.log(error)
     }
   } finally{
